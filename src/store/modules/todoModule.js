@@ -30,9 +30,12 @@ export default {
         },
         editToDo(state, editedTodo){
             const idx = state.todos.findIndex(e => e.id ===  editedTodo.id);
-            idx && (state.todos[idx] = editedTodo);
-
+            state.todos[idx] = editedTodo;
+        },
+        deleteToDo(state, id){
+            state.todos = state.todos.filter(e => e.id !== id)
         }
+
     },
 
     getters: {

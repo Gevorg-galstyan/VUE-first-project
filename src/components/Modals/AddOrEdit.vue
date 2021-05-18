@@ -21,7 +21,7 @@
     </b-form>
     <div class="modal-footer">
       <b-button class="mt-3" block @click="$bvModal.hide('modal-center')">Cancel</b-button>
-      <b-button class="mt-3" block variant="primary" @click="edit()">Edit</b-button>
+      <b-button class="mt-3" block variant="primary" @click="edit">Edit</b-button>
     </div>
   </b-modal>
 </template>
@@ -40,7 +40,7 @@ export default {
   methods: {
     edit(){
       this.$store.commit('editToDo', this.todo);
-      this.todo = this.$store.getters.getToDoById;
+      // this.todo = this.$store.getters.getToDoById
     }
   },
 
@@ -49,6 +49,9 @@ export default {
       this.todo = {...this.$store.getters.getToDoById}
     }
   },
+  // updated() {
+  //
+  // }
 
 }
 </script>

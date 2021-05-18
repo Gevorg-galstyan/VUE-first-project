@@ -14,9 +14,12 @@
             <b-button
                 v-b-modal.modal-center
                 class="mx-2"
-                @click="getId(todo.id)"
+                @click="getId({method: 'edit',id:todo.id})"
             >Edit</b-button>
-            <button class="btn btn-danger">Delete</button>
+            <button
+                class="btn btn-danger"
+                @click="getId({method: 'delete', id:todo.id})"
+            >Delete</button>
           </div>
           <router-link :to="{path:`/todo/${todo.id}`, id:todo.id}">See More</router-link>
         </div>
@@ -49,13 +52,14 @@ export default {
       }
       return str.slice(0, length) + '...'
     },
-    getId(id){
-      this.$store.commit('changeToDoId', id)
+    getId(obj){
+      obj.method === 'edit' ? this.$store.commit('changeToDoId', obj.id) : this.$store.commit('deleteToDo', obj.id)
     }
   },
   computed: {
     ...mapGetters(['getAllTodos']),
   },
+
   components: {
     AddOrEdit
   }
